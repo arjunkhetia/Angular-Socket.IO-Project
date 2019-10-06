@@ -25,6 +25,24 @@ Start the Angular app at `http://localhost:4200/`:
 $ npm start
 ```
 
+You can clone the Back-end for this project with Node.Js, Express & Socket.IO at :
+
+```bash
+$ git clone https://github.com/arjunkhetia/Node.Js-Express-Socket.IO-Project.git
+```
+
+Install dependencies:
+
+```bash
+$ npm install
+```
+
+Start Express.js app at `http://localhost:3000/`:
+
+```bash
+$ npm start
+```
+
 Angular project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
 
 ## Development server
