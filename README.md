@@ -7,7 +7,7 @@
 ![Dependency Status][dependency-image]
 ![devDependencies Status][devdependency-image]
 
-The quickest way to get start with Angular - 8.2.8 & Socket.IO - 2.3.0, just clone the project:
+The quickest way to get start with Angular - 13.3.0 & Socket.IO - 4.5.0, just clone the project:
 
 ```bash
 $ git clone https://github.com/arjunkhetia/Node.Js-Express-Project.git
@@ -43,7 +43,7 @@ Start Express.js app at `http://localhost:3000/`:
 $ npm start
 ```
 
-Angular project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+Angular project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
 
 ## Development server
 
@@ -76,13 +76,15 @@ Socket.IO enables real-time bidirectional event-based communication.
 ```ts
 import * as io from 'socket.io-client';
 
+// We can use either use 'https' or 'wss' (respectively 'http' or 'ws')
 constructor() {
   this.socket = io('http://localhost:3000', {
-    reconnectionDelay: 1000,
-    reconnection: true,
-    reconnectionAttempts: 1,
-    transports: ['websocket'], // default is ['polling', 'websocket']
-    rejectUnauthorized: false
+    path: '/socket.io/',  // It is the name of the path that is captured on the server side.
+    transports: ["websocket", "polling"],  // The low-level connection to the Socket.IO server.
+    reconnectionAttempts: Infinity,  // The number of reconnection attempts before giving up.
+    reconnectionDelay: 1000,  // The initial delay before reconnection in milliseconds
+    reconnectionDelayMax: 5000,  // The maximum delay between two reconnection attempts. Each attempt increases the reconnection delay by 2x.
+    timeout: 20000,  // The timeout in milliseconds for each connection attempt.
   });
 }
 

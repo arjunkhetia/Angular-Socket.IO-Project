@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketServiceService } from './service/socket-service.service';
+import { SocketIoService } from './service/socket-io.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -7,17 +7,17 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
 
   public title = 'Angular Socket.IO Project';
   public clientId: any = '';
   public socketId: any = '';
-  public serverStatus: boolean;
+  public serverStatus: boolean = false;
   public messages: string[] = [];
   public message: string = '';
-  public subscription: Subscription;
+  public subscription: Subscription = new Subscription;
 
-  constructor(public socketservice: SocketServiceService) { }
+  constructor(private socketservice: SocketIoService) { }
 
   ngOnInit(): void {
     if (this.socketservice) {
@@ -42,5 +42,4 @@ export class AppComponent implements OnInit {
     });
     this.message = '';
   }
-
 }

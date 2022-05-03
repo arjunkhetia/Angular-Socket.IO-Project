@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
-import * as io from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class SocketServiceService {
+export class SocketIoService {
 
   public socket: any;
 
   constructor() {
     this.socket = io('http://localhost:3000', {
+      path: '/socket.io/',
+      transports: ['websocket', 'polling'],
+      reconnectionAttempts: Infinity,
       reconnectionDelay: 1000,
-      reconnection: true,
-      reconnectionAttempts: 1,
-      transports: ['websocket'], // default is ['polling', 'websocket']
-      rejectUnauthorized: false
+      reconnectionDelayMax: 5000,
+      timeout: 20000,
     });
     this.onInit();
   }
@@ -81,5 +82,4 @@ export class SocketServiceService {
       });
     });
   }
-
 }
